@@ -19,8 +19,13 @@ window.onload = function() {
 
   // spawn position snake
   randomPlace(snake)
+  // spawn postion food
+  randomPlace(food)
 
-  update();
+  // listening for action like press keys
+  document.addEventListener('keyup', moveHandler);
+
+  setInterval(update, 1000/10);
 
 } 
 
@@ -30,7 +35,6 @@ function update() {
   ctx.fillRect(0, 0, frame.width, frame.height);
 
   // food 
-  randomPlace(food)
   ctx.fillStyle = "red";
   ctx.fillRect(food.x, food.y, blockSize, blockSize);
 
@@ -44,4 +48,8 @@ function update() {
 function randomPlace(obj) {
   obj.x = Math.floor(Math.random() * cols) * blockSize;
   obj.y = Math.floor(Math.random() * rows) * blockSize;
+}
+
+function moveHandler(e) {
+  console.log(e.code)
 }
